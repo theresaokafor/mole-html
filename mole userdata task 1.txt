@@ -1,0 +1,14 @@
+#cloud-boothook
+#!/bin/bash
+sudo su 
+yum update -y
+yum install -y httpd
+cd /var/www/html
+aws s3 ls
+aws s3 ls s3://tess-assigment1
+aws s3 cp s3://tess-assigment1/mole.zip .
+unzip mole.zip 
+cp -r mole-main/* /var/www/html/
+rm -rf mole-main mole.zip
+systemctl enable httpd 
+systemctl start httpd
