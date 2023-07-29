@@ -1,0 +1,13 @@
+#!/bin/bash
+sudo su
+yum update -y
+yum install -y httpd
+cd /var/www/html
+wget https://github.com/theresaokafor/mole-html/archive/refs/heads/master.zip
+unzip master.zip
+cd mole-html-master/
+unzip mole.zip
+cp -r mole-main/* /var/www/html/
+rm -rf mole-html-master master.zip 
+systemctl enable httpd 
+systemctl start httpd
